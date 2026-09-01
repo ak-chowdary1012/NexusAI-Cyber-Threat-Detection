@@ -3,8 +3,7 @@
 **AI-based Network Attack Forecasting from Network Traffic Data**
 Smart India Hackathon 2026 · Problem Statement **SIH26153** · National Technical Research Organisation (NTRO) · Theme: Blockchain & Cybersecurity
 Team **AVV Elites** · Amrita Vishwa Vidyapeetham
-<<<<<<< HEAD
-Author: **Avinash Krishna** · [github.com/ak-chowdary1012](https://github.com/ak-chowdary1012)
+<<<<<<< [github.com/ak-chowdary1012](https://github.com/ak-chowdary1012)
 =======
 >>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 
