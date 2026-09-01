@@ -1,0 +1,28 @@
+# Author: Avinash Krishna — Team AVV Elites (SIH26153)
+# .pre-commit-config.yaml
+# SECURITY.md ref: §5 — "Scan the entire project for secrets and credentials."
+# Install once per clone:  pip install pre-commit --break-system-packages && pre-commit install
+# From then on, every `git commit` runs this automatically — a secret has to
+# get past this AND the CI gitleaks job (.github/workflows/ci.yml) to reach
+# a shared branch.
+
+repos:
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.21.2
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: check-added-large-files
+        args: ["--maxkb=5000"]  # catches an accidentally-committed dataset/checkpoint before it bloats history
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.9
+    hooks:
+      - id: ruff
+        args: ["--fix"]

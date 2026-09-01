@@ -1,0 +1,16 @@
+# NexusAI Forecast — ml_core requirements
+# Install with: pip install -r requirements.txt
+# (sandboxed/managed environments: pip install -r requirements.txt --break-system-packages)
+
+numpy>=1.26,<3.0
+pandas>=2.0
+scikit-learn>=1.4
+torch>=2.2
+shap>=0.45
+rank_bm25>=0.2.2
+scapy>=2.5
+streamlit>=1.33
+pyyaml>=6.0
+matplotlib>=3.8
+plotly>=5.20
+pytest>=8.0

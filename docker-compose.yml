@@ -1,0 +1,85 @@
+# Author: Avinash Krishna — Team AVV Elites (SIH26153)
+# docker-compose.yml
+# SECURITY.md ref: §3 in full — this file IS the "secure deployment"
+# requirement made concrete: HTTPS enforced at the edge, the database has no
+# published port (only reachable from other containers on nexusai_internal),
+# and every secret is read from environment variables via env_file, never
+# baked into an image layer or checked into this file.
+#
+# Local/demo run:
+#   1. cp .env.example .env   (fill in real values — see SECURITY.md §5)
+#   2. python -m src.train    (produces checkpoints/, which the backend image bakes in)
+#   3. mkdir -p nginx/certs && openssl req -x509 -nodes -days 365 \
+#        -newkey rsa:2048 -keyout nginx/certs/key.pem -out nginx/certs/cert.pem \
+#        -subj "/CN=localhost"        (self-signed cert for local HTTPS testing)
+#   4. docker compose up --build
+#   5. https://localhost  (browser will warn on the self-signed cert — expected locally;
+#      use a real cert, e.g. Let's Encrypt, for any real deployment)
+
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "80:80"     # redirects to 443 only (see nginx/nginx.conf)
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/certs:/etc/nginx/certs:ro
+    depends_on:
+      - backend
+    networks:
+      - nexusai_public
+      - nexusai_internal
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: .
+      dockerfile: platform/backend/Dockerfile
+    env_file:
+      - .env
+    environment:
+      # These two are deployment topology, not secrets — fine to set here
+      # directly; everything actually sensitive comes from .env (git-ignored).
+      DATABASE_URL: postgresql://nexusai:${POSTGRES_PASSWORD}@postgres:5432/nexusai
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - nexusai_internal
+      # deliberately NOT on nexusai_public — the backend is reachable only
+      # through nginx, never directly from outside the host.
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: nexusai
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: nexusai
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - nexusai_internal
+    # NO "ports:" mapping — SECURITY.md §3: "restrict direct database access
+    # from the public internet." This service is unreachable from the host
+    # or the internet; only `backend`, on the same internal network, can
+    # reach it on 5432.
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    networks:
+      - nexusai_internal
+    # Also no published port, for the same reason — Redis here only backs
+    # the rate limiter (app/rate_limit.py); it is not a public cache.
+    restart: unless-stopped
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+
+networks:
+  nexusai_public:    # only nginx sits on this network
+  nexusai_internal:  # backend, postgres, redis — never exposed to the host
+
+volumes:
+  postgres_data:

@@ -1,0 +1,46 @@
+{# Author: Avinash Krishna — Team AVV Elites (SIH26153) #}
+{% extends "base.html" %}
+{% block title %}Create account — NexusAI Forecast | AVV Elites{% endblock %}
+{% block content %}
+<div class="hero-split">
+  <div class="hero-panel">
+    <div class="brand">NEXUSAI<span>_FORECAST</span></div>
+    <div class="hero-copy">
+      <h1>One dashboard per organization.</h1>
+      <p>Every analyst you invite shares your organization's network segments and forecast history — and only your organization's. Accounts, sessions, and every API request are scoped and audited; see SECURITY.md in the repository for the full design.</p>
+    </div>
+    <div class="hero-meta">Team AVV Elites · Amrita Vishwa Vidyapeetham<br>Author: Avinash Krishna · <a href="https://github.com/ak-chowdary1012" target="_blank" rel="noopener">github.com/ak-chowdary1012</a></div>
+  </div>
+
+  <div class="form-panel">
+    <div class="form-card">
+      <h2>Create your organization</h2>
+      <p class="subtitle">Takes a minute. You'll verify your email before signing in.</p>
+      <div id="register-alert" class="alert"></div>
+      <form id="register-form">
+        <div class="field">
+          <label for="organization_name">Organization name</label>
+          <input type="text" id="organization_name" name="organization_name" required maxlength="200">
+        </div>
+        <div class="field">
+          <label for="full_name">Your name</label>
+          <input type="text" id="full_name" name="full_name" required maxlength="200">
+        </div>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required minlength="12" autocomplete="new-password">
+          <div class="hint">At least 12 characters, with upper and lower case and a number.</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Create account</button>
+      </form>
+      <div class="form-footer">
+        Already have an account? <a href="/">Sign in</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

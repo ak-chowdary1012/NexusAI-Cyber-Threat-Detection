@@ -1,0 +1,51 @@
+{# Author: Avinash Krishna — Team AVV Elites (SIH26153) #}
+{% extends "base.html" %}
+{% block title %}Sign in — NexusAI Forecast | AVV Elites{% endblock %}
+{% block content %}
+<div class="hero-split">
+  <div class="hero-panel">
+    <div class="brand">NEXUSAI<span>_FORECAST</span></div>
+    <div class="hero-copy">
+      <h1>See the attack before it lands.</h1>
+      <p>A World-Model AI that learns how your network behaves, then forecasts attacker progression across MITRE ATT&amp;CK stages — minutes before compromise completes.</p>
+
+      <div class="hero-curve">
+        <div class="hero-curve-label"><span>INFILTRATION PROBABILITY</span><span>1m · 5m · 15m</span></div>
+        <svg viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="100" x2="400" y2="100" stroke="#24384D" stroke-width="1"/>
+          <line x1="130" y1="10" x2="130" y2="100" stroke="#24384D" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="134" y="20" fill="#5D7085" font-size="10" font-family="ui-monospace, monospace">NOW</text>
+          <path d="M0,95 C40,93 70,90 100,85 C115,82 122,78 130,72 C160,55 190,50 230,38 C270,26 320,16 400,10"
+                fill="none" stroke="#E2A23B" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M0,95 C40,93 70,90 100,85 C115,82 122,78 130,72" fill="none" stroke="#4FB8C4" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="130" cy="72" r="3.5" fill="#E7E9EA"/>
+          <circle cx="400" cy="10" r="3.5" fill="#E2A23B"/>
+        </svg>
+      </div>
+    </div>
+    <div class="hero-meta">Problem Statement <code>SIH26153</code> · National Technical Research Organisation<br>Built by <strong style="color:var(--accent)">AVV Elites</strong> · Amrita Vishwa Vidyapeetham · <a href="https://github.com/ak-chowdary1012" target="_blank" rel="noopener">github.com/ak-chowdary1012</a></div>
+  </div>
+
+  <div class="form-panel">
+    <div class="form-card">
+      <h2>Sign in</h2>
+      <p class="subtitle">Access your organization's forecasting dashboard.</p>
+      <div id="login-alert" class="alert"></div>
+      <form id="login-form">
+        <div class="field">
+          <label for="email">Work email</label>
+          <input type="email" id="email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </form>
+      <div class="form-footer">
+        No account yet? <a href="/register">Create one</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
