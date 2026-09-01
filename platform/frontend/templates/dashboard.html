@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — NexusAI Forecast{% endblock %}
+{% block content %}
+<div class="app-shell" id="dashboard-root">
+  <aside class="sidebar">
+    <div class="brand">NEXUSAI<span>_FORECAST</span></div>
+    <nav>
+      <a class="nav-link active" href="/dashboard">Forecasts</a>
+      <a class="nav-link" href="/copilot">Analyst copilot</a>
+      <a class="nav-link" href="/api/docs" target="_blank" rel="noopener">API reference</a>
+    </nav>
+    <div class="sidebar-footer">
+      Signed in as <strong id="user-name">…</strong>
+      <button class="btn btn-secondary btn-sm" data-action="logout">Sign out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <div>
+        <h2>Forecasts</h2>
+        <p>World Model predictions across your monitored network segments.</p>
+      </div>
+      <div style="display:flex; gap:0.6rem; align-items:center;">
+        <select id="segment-select" class="select-field"></select>
+        <button id="demo-forecast-btn" class="btn btn-secondary btn-sm">Run demo forecast</button>
+      </div>
+    </div>
+
+    <div id="no-segments-state" class="panel empty-state hidden">
+      <h3>No network segments yet</h3>
+      <p>Create your first segment to start generating forecasts.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>ADD NETWORK SEGMENT</h3></div>
+      <form id="create-segment-form" style="display:flex; gap:0.6rem;">
+        <input type="text" id="segment-name" placeholder="e.g. corp-vpn-subnet" required maxlength="200"
+               style="flex:1; padding:0.6rem 0.8rem; background:var(--surface-raised); border:1px solid var(--border); border-radius:4px; color:var(--text-primary);">
+        <button type="submit" class="btn btn-primary btn-sm">Add segment</button>
+      </form>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>RECENT FORECASTS</h3></div>
+      <table>
+        <thead>
+          <tr><th>Host</th><th>Predicted stage</th><th>Peak probability</th><th>ATT&amp;CK mapping</th><th></th></tr>
+        </thead>
+        <tbody id="forecasts-tbody">
+          <tr><td colspan="5" class="empty-state">Select a segment to view forecasts.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+{% endblock %}

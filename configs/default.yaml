@@ -1,0 +1,94 @@
+# NexusAI Forecast — default configuration
+# Every value here is referenced by name in src/*, so this file is the single
+# source of truth for hyperparameters. Change values here, not in code.
+
+project:
+  name: "NexusAI Forecast"
+  problem_statement_id: "SIH26153"
+  seed: 42  # fixed for reproducibility, per the code-quality bar in the docs
+
+paths:
+  raw_data_dir: "data/raw"
+  processed_data_dir: "data/processed"
+  synthetic_data_dir: "data/synthetic"
+  checkpoint_dir: "checkpoints"
+  rag_index_dir: "src/rag/index"
+
+windowing:
+  window_seconds: 30          # flow/packet aggregation window
+  overlap: 0.5                # 50% overlap -> 15s stride
+  stride_seconds: 15
+  sequence_length: 20         # T = 20 windows = 10 minutes of context
+
+state_encoder:
+  # MLP classifier (known attack-family classification)
+  # input_dim = len(FUSED_FEATURE_NAMES) = 21 flow-level + 10 packet-level
+  # engineered features (see src/features/windowing.py). NOTE: this is the
+  # curated/derived feature set this project computes, not the raw
+  # CICFlowMeter 78-80 column export — flow_features.py reduces those raw
+  # columns down to the 21 engineered ones actually fed to the model.
+  mlp:
+    input_dim: 31
+    hidden_dims: [256, 128, 64]
+    num_classes: 6              # benign + 5 CICIDS2017 attack families used in the demo split
+    dropout: 0.3
+  # Deep autoencoder (novelty / reconstruction-error detector)
+  autoencoder:
+    input_dim: 31
+    latent_dim: 16
+    hidden_dims: [64, 32]
+    dropout: 0.1
+  state_vector_dim: 32          # mlp class-probabilities + anomaly score + latent fused -> S_t
+
+transition_model:
+  input_dim: 32                 # must equal state_encoder.state_vector_dim
+  hidden_size: 128
+  num_layers: 2
+  bidirectional: true
+  attention_heads: 4
+  dropout: 0.2
+  learning_rate: 0.0005
+  batch_size: 64
+  epochs: 30
+  # Withheld entirely from training -> generalisation check (docs/architecture.md §4.3).
+  # On the REAL CIC-IDS2017 dataset this should be a raw attack-family label,
+  # e.g. "Infiltration" (the value named in the project docs). The BUNDLED
+  # SYNTHETIC fixture (src/synthetic_data.py) labels windows with this
+  # project's 5 kill-chain *stages* instead (it has no CICIDS2017 attack-family
+  # taxonomy to draw from) — so the demo default below is "Exfiltration", one
+  # of those 5 stage names, purely so `python -m src.train` with no --data-path
+  # actually exercises this code path. Override with --config or edit this
+  # value to "Infiltration" once real CIC-IDS2017 data is plugged in.
+  held_out_attack_family: "Exfiltration"
+
+rollout:
+  k_steps: [2, 10, 30]           # -> [1, 5, 15] minute horizons at 30s windows
+  horizon_minutes: [1, 5, 15]
+
+attck_mapper:
+  stages:
+    - Reconnaissance
+    - "Initial Access"
+    - "Lateral Movement"
+    - "Command and Control"
+    - Exfiltration
+  cluster_k: 5                   # k-means clusters over latent states, cross-checked vs rule-based labels
+
+baseline:
+  model: "logistic_regression"
+  class_weight: "balanced"
+  max_iter: 1000
+
+explainability:
+  shap_background_samples: 100
+  shap_max_display: 15
+
+rag:
+  retrieval_method: "bm25"       # fully local/offline — no model download, no cloud embedding API
+  top_k: 4
+  knowledge_base_path: "src/rag/attck_knowledge_base.json"
+
+training:
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15

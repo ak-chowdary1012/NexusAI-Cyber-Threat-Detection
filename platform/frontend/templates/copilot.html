@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Analyst copilot — NexusAI Forecast{% endblock %}
+{% block content %}
+<div class="app-shell" id="copilot-root">
+  <aside class="sidebar">
+    <div class="brand">NEXUSAI<span>_FORECAST</span></div>
+    <nav>
+      <a class="nav-link" href="/dashboard">Forecasts</a>
+      <a class="nav-link active" href="/copilot">Analyst copilot</a>
+      <a class="nav-link" href="/api/docs" target="_blank" rel="noopener">API reference</a>
+    </nav>
+    <div class="sidebar-footer">
+      <button class="btn btn-secondary btn-sm" data-action="logout">Sign out</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="main-header">
+      <div>
+        <h2>Analyst copilot</h2>
+        <p>Retrieval-grounded explanation: every claim traces to a SHAP value, an attention weight, or a retrieved MITRE ATT&amp;CK technique — nothing here is free-form generation.</p>
+      </div>
+    </div>
+
+    <div id="copilot-empty" class="panel empty-state hidden">
+      <h3>No forecast selected</h3>
+      <p>Open a forecast from the <a href="/dashboard">dashboard</a> to see its grounded explanation here.</p>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>FORECAST</h3></div>
+      <p id="copilot-headline" style="color: var(--text-primary); font-size: 1.05rem;">Loading…</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-title"><h3>EVIDENCE</h3></div>
+        <ul class="evidence-list" id="copilot-evidence"></ul>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><h3>RECOMMENDED ACTIONS</h3></div>
+        <ul class="action-list" id="copilot-actions"></ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title"><h3>RETRIEVED ATT&amp;CK TECHNIQUES</h3></div>
+      <div id="copilot-techniques"></div>
+    </div>
+
+    <div class="panel hidden" id="copilot-narration-panel">
+      <div class="panel-title"><h3>NARRATED SUMMARY (LLM, grounded in the evidence above)</h3></div>
+      <p id="copilot-narration" style="color: var(--text-primary);"></p>
+    </div>
+  </main>
+</div>
+{% endblock %}

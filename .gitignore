@@ -1,0 +1,58 @@
+# --- secrets: SECURITY.md §5 — these must never reach git history ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+nginx/certs/
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+venv/
+.venv/
+env/
+
+# --- datasets & generated data (SECURITY.md-adjacent: also keeps the repo
+# small — CIC-IDS2017/2018 and CTU-13 are multi-GB, never meant to live in git) ---
+data/raw/*
+data/processed/*
+data/synthetic/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/synthetic/.gitkeep
+
+# --- model artifacts (regenerate with `python -m src.train`) ---
+checkpoints/*
+!checkpoints/.gitkeep
+results/*
+!results/.gitkeep
+*.pt
+*.pkl
+*.npz
+
+# --- databases (dev/test only — production uses the postgres container) ---
+*.db
+*.sqlite3
+
+# --- Jupyter ---
+.ipynb_checkpoints/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# --- node (frontend tooling, if ever added) ---
+node_modules/
+
+# --- logs ---
+*.log
