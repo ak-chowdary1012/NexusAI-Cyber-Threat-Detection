@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Author: Avinash Krishna — Team AVV Elites (SIH26153)
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 # platform/backend/Dockerfile
 # Build from the REPO ROOT: docker build -f platform/backend/Dockerfile .
 # (docker-compose.yml at the repo root does this automatically)

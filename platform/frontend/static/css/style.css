@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 /* Author: Avinash Krishna — Team AVV Elites (SIH26153) */
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 /* platform/frontend/static/css/style.css
    Design plan (per frontend-design skill):
    Color — deep ink-navy base, not pure black; ONE signature accent: amber,
@@ -181,6 +184,7 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; colo
   display: flex;
   flex-direction: column;
 }
+<<<<<<< HEAD
 .sidebar .brand { margin-bottom: 0.15rem; }
 .team-credit {
   font-family: var(--font-body);
@@ -190,6 +194,9 @@ button, input, select, textarea { font-family: inherit; font-size: inherit; colo
   margin-bottom: 2rem;
 }
 .team-credit strong { color: var(--accent); font-weight: 600; }
+=======
+.sidebar .brand { margin-bottom: 2rem; }
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 .nav-link {
   display: block;
   padding: 0.55rem 0.7rem;

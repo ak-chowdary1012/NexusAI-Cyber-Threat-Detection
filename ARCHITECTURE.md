@@ -1,7 +1,10 @@
 # NexusAI Forecast — Architecture
 
 **SIH26153** · AI-based Network Attack Forecasting from Network Traffic Data · Team AVV Elites
+<<<<<<< HEAD
 Author: Avinash Krishna
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 
 ## 1. Problem framing
 

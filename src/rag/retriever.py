@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Author: Avinash Krishna — Team AVV Elites (SIH26153)
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 """
 src/rag/retriever.py
 Architecture ref: docs/architecture.md § RAG-Grounded Decision Support (new — see § 4.8)

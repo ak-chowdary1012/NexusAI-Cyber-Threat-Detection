@@ -1,7 +1,10 @@
 # data/
 
+<<<<<<< HEAD
 *NexusAI Forecast — Team AVV Elites · Author: Avinash Krishna*
 
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 This directory is git-ignored except for `.gitkeep` placeholders — the real
 datasets are multi-gigabyte and don't belong in version control.
 

@@ -1,7 +1,10 @@
 # Security Design
 
+<<<<<<< HEAD
 *NexusAI Forecast — SIH26153 · Team AVV Elites · Author: Avinash Krishna*
 
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 This document maps every item of the project's security requirements to
 concrete implementation, with file references and honest notes on what's
 demo-grade versus what a real production rollout would still need. It also

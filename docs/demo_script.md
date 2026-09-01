@@ -1,7 +1,10 @@
 # Demo Script (target: 2:00)
 
+<<<<<<< HEAD
 *NexusAI Forecast — SIH26153 · Team AVV Elites · Author: Avinash Krishna*
 
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 Shot list for the required demo video. Timings are guidance, not a hard
 script — practice once with a screen recorder before the real take.
 

@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Author: Avinash Krishna — Team AVV Elites (SIH26153)
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 # docker-compose.yml
 # SECURITY.md ref: §3 in full — this file IS the "secure deployment"
 # requirement made concrete: HTTPS enforced at the edge, the database has no

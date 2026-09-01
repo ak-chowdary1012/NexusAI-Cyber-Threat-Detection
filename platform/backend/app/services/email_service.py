@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Author: Avinash Krishna — Team AVV Elites (SIH26153)
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 """
 platform/backend/app/services/email_service.py
 SECURITY.md ref: §1 — email verification and password reset delivery.

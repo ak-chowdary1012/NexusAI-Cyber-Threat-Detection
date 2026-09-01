@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Author: Avinash Krishna — Team AVV Elites (SIH26153)
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 """
 app/streamlit_app.py
 Architecture ref: docs/architecture.md § 7 Live Demo & Dashboard Plan
@@ -125,7 +128,10 @@ def load_uploaded_traffic(uploaded_file) -> pd.DataFrame:
 def main():
     st.title("🛰️ NexusAI Forecast")
     st.caption("SIH26153 · AI-Based Network Attack Forecasting from Network Traffic Data · Team AVV Elites")
+<<<<<<< HEAD
     st.caption("Author: Avinash Krishna · [github.com/ak-chowdary1012](https://github.com/ak-chowdary1012)")
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
     st.markdown(
         "A **World-Model** AI system that learns network state-transition dynamics and forecasts "
         "attacker progression *before* compromise completes — mapped to MITRE ATT&CK stages, "

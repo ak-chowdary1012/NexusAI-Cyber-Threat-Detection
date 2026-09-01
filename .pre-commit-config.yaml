@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Author: Avinash Krishna — Team AVV Elites (SIH26153)
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 # .pre-commit-config.yaml
 # SECURITY.md ref: §5 — "Scan the entire project for secrets and credentials."
 # Install once per clone:  pip install pre-commit --break-system-packages && pre-commit install

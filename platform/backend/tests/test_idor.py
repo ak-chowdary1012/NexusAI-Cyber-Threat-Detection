@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 # Author: Avinash Krishna — Team AVV Elites (SIH26153)
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 """
 platform/backend/tests/test_idor.py
 SECURITY.md ref: §2 in full. This is THE test file for the IDOR requirement

@@ -1,7 +1,10 @@
 # platform/ — Secure Multi-Analyst SOC Platform
 
+<<<<<<< HEAD
 *NexusAI Forecast — Team AVV Elites · Author: Avinash Krishna*
 
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 This directory is a production-oriented extension of the core World Model
 pipeline in `../src/`. It exists to answer a question the hackathon spec
 doesn't have to answer but a real SOC deployment does: *how do multiple

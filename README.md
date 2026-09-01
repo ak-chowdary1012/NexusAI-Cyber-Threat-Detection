@@ -3,7 +3,10 @@
 **AI-based Network Attack Forecasting from Network Traffic Data**
 Smart India Hackathon 2026 · Problem Statement **SIH26153** · National Technical Research Organisation (NTRO) · Theme: Blockchain & Cybersecurity
 Team **AVV Elites** · Amrita Vishwa Vidyapeetham
+<<<<<<< HEAD
 Author: **Avinash Krishna** · [github.com/ak-chowdary1012](https://github.com/ak-chowdary1012)
+=======
+>>>>>>> 77949f2bb89fea05df3ee4faf24abd4771ef1671
 
 A World-Model AI system that learns the evolving state of a network from traffic telemetry, forecasts the probability and progression of malicious activity **before compromise completes**, maps predicted trajectories onto MITRE ATT&CK kill-chain stages, and explains every forecast in terms a defender can act on.
 
